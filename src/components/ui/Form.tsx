@@ -11,11 +11,15 @@ import {
 import { Button } from "./button";
 import { Textarea } from "@/components/ui/textarea";
 import { Gemini } from "@/config/gemini";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 
 
 async function main(input : string) {
-  await Gemini(input); 
+  const response = await Gemini(input); 
+  await prisma.form.create(response);
 }
 
 export function Form() {

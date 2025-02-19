@@ -8,10 +8,16 @@ datasource db {
 }
 
 model User {
-  id        Int    @id @default(autoincrement())
-  username  String @unique
+  id    Int    @id @default(autoincrement()) 
+  username String @unique
   password  String
-  firstName String
-  lastName  String
-  email     String @unique
+  forms Form[] 
 }
+
+model Form {
+  id      String @id @default(uuid()) 
+  data    Json
+  user_Id Int
+  user    User @relation(fields: [user_Id], references: [id]) 
+}
+

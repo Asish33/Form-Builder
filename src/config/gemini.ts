@@ -55,5 +55,5 @@ export async function Gemini( input : string) {
   );
 
   const responseText = await result.response.text(); 
-  console.log(responseText);
+  return responseText;
 }
